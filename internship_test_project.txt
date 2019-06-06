@@ -1,0 +1,39 @@
+
+This project is composed of multiple steps.  Some steps are dependent and
+others are not.  Read through all the steps to understand the flow before
+starting and then complete as many steps as you can.
+
+NOTE: you should feel free to google around and look for answers on stack
+    overflow and even liberally use existing code samples you find so long as you
+    understand them.  The exercise here is to show that you can solve a problem
+    like this using whatever means are available.
+
+The results of all the following steps should be organized inside a git
+repository.  The later should contain a meaningful folder structure along with
+a readme explaining how to do various things below.
+
+1.  Find a (public) dataset with ~100s to 1000s of records.  This can be e.g. a
+    list of companies, products, people, or any other data you're interested in.
+    Each "record" (e.g. company, person, product, etc.) should be composed of
+    muliptle fields (e.g. company name, headquarters, founding year, etc.) and
+    should have at least one unique field.  Download this data set and put it in a
+    standardized format of your choosing (csv, json, ..).
+
+2.  Upload the data  into a "database" of your choice (mysql, postgres, mongo,
+    es).  Feel free to use either a relational or non-sql database but your
+    database must be open source and relatively standard.  The output of this step
+    should be an upload script (bash, python, sql, json, etc.) and instructions on
+    how to use it.
+
+3.  Write a docker-comopse file that creates a container using your database of
+    choice and include this in your git repo.  Your script from step 2 should be
+    able to load data into this environment.  NOTE: if you are not familiar with
+    docker you may skip this step but then you must include instructions in your
+    documentation on how to run your code (and upload script) on a standard
+    environment like ubuntu 18.04 (including installing the DB, etc.).
+
+4.  Select a python web-service framework like django, flask, falcon or another
+    of your choice.  Write a web end-point that can query your database via a REST
+    interface using your chosen framework (django, flask, etc.).  You only need to
+    implement one or two basic queries like GETing and object by its unique id or
+    optionally adding a new object to the DB.
