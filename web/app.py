@@ -1,9 +1,9 @@
 from flask import Flask, jsonify, json
 app = Flask(__name__)
 
-with open('states.json') as f:
-	data = json.load(f)
-  
+# with open('states.json') as f:
+# 	data = json.load(f)
+
 
 @app.route("/")
 def hello_world():
@@ -18,10 +18,10 @@ def good_bye():
 	return jsonify(json_dic)
 
 
-@app.route("/getstate")
-def get_state():
-	for state in data['states']:
-		return jsonify(state['name'])
+# @app.route("/getstate")
+# def get_state():
+# 	for state in data['states']:
+# 		return jsonify(state['name'])
 
 if __name__=="__main__":
-	app.run()
+	app.run(host= '0.0.0.0')
