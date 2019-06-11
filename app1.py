@@ -3,7 +3,6 @@ app = Flask(__name__)
 
 with open('states.json') as f:
 	data = json.load(f)
-  
 
 @app.route("/")
 def hello_world():
@@ -17,11 +16,12 @@ def good_bye():
 	}
 	return jsonify(json_dic)
 
-
 @app.route("/getstate")
 def get_state():
-	for state in data['states']:
-		return jsonify(state['name'])
+	for item in data['states']['name']:
+		return jsonify(item)
+
+
 
 if __name__=="__main__":
 	app.run()

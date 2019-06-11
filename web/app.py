@@ -8,30 +8,32 @@ api = Api(app)
 
 #client which connects to the database
 client = MongoClient("mongodb://db:27017")
-db = client.aNewDB
-statescollec = db["statescollec"]
-#upload dataset
-#into aNewDB (database) inside
-#statescollec (colllection)
 
-class Statesname(Resource):
+# database
+db = client.mydatabase
+# Created collection name: mycollection
+collection = db.mycollection
+
+emp_rec1 = {
+	        "name":"Mr.Geek",
+	        "eid":24,
+	        "location":"delhi"
+	        }
+emp_rec2 = {
+	        "name":"Mr.Shaurya",
+	        "eid":14,
+	        "location":"delhi"
+	        }
+
+# Insert Data
+rec_id1 = collection.insert_one(emp_rec1)
+rec_id2 = collection.insert_one(emp_rec2)
+
+class myclass(Resource):
 	def get(self):
-		state_name = statescollec.find({})[0]['states']
-		return (state_name)
-
-# class State(Resource):
-# 	def get(self):
-# 		#query with db and collection name
-# 	retSt =	statsdb.statesCollection.find(
-# 	{states[name]}
-# 	)
-
-		# get the states from the statesdb database and statesCollection collection
-#		return jsonify(retSt)
-
-
-# with open('states.json') as f:
-# 	data = json.load(f)
+	cursor = collection.find()
+	for record in cursor:
+	    return jsonify(record)
 
 #for testing
 @app.route("/")
@@ -47,7 +49,7 @@ def good_bye():
 	}
 	return jsonify(json_dic)
 
-api.add_resource(Statesname, "/state")
+api.add_resource(myclass, "/record")
 # @app.route("/getstate")
 # def get_state():
 # 	for state in data['states']:
