@@ -31,9 +31,9 @@ rec_id2 = collection.insert_one(emp_rec2)
 
 class myclass(Resource):
 	def get(self):
-	cursor = collection.find()
-	for record in cursor:
-	    return jsonify(record)
+		cursor = collection.find()
+		for record in cursor:
+			return jsonify(record)
 
 #for testing
 @app.route("/")
