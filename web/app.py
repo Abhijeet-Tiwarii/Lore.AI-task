@@ -7,31 +7,31 @@ app = Flask(__name__)
 api = Api(app)
 
 #client which connects to the database
-client = MongoClient("mongodb://db:27017")
+client = MongoClient("mongodb://localhost:27017")
 
 # database
-db = client.mydatabase
+db = client.mydb
 # Created collection name: mycollection
-collection = db.mycollection
+collection = db.inventory
 
-emp_rec1 = {
-	        "name":"Mr.Geek",
-	        "eid":24,
-	        "location":"delhi"
-	        }
-emp_rec2 = {
-	        "name":"Mr.Shaurya",
-	        "eid":14,
-	        "location":"delhi"
-	        }
+# emp_rec1 = {
+# 	        "name":"Mr.Geek",
+# 	        "id":24,
+# 	        "location":"delhi"
+# 	        }
+# emp_rec2 = {
+# 	        "name":"Mr.Shaurya",
+# 	        "id":14,
+# 	        "location":"delhi"
+# 	        }
+#
+# # Insert Data
+# rec_id1 = collection.insert_one(emp_rec1)
+# rec_id2 = collection.insert_one(emp_rec2)
 
-# Insert Data
-rec_id1 = collection.insert_one(emp_rec1)
-rec_id2 = collection.insert_one(emp_rec2)
-
-class myclass(Resource):
-	def get(self):
-		cursor = collection.find()
+class startup(Resource):
+	def get(self,id):
+		cursor = collection.find({"_id" : ObjectId("5d08031b5dbb7959c310c6b2"),})
 		for record in cursor:
 			return jsonify(record)
 
@@ -49,7 +49,7 @@ def good_bye():
 	}
 	return jsonify(json_dic)
 
-api.add_resource(myclass, "/record")
+api.add_resource(startup, "/startup/<id>")
 # @app.route("/getstate")
 # def get_state():
 # 	for state in data['states']:
