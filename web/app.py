@@ -7,7 +7,7 @@ app = Flask(__name__)
 api = Api(app)
 
 #client which connects to the database
-client = MongoClient("mongodb://localhost:27017")
+client = MongoClient("mongodb://db:27017")
 
 # database
 db = client.mydb
