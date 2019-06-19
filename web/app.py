@@ -12,7 +12,7 @@ client = MongoClient("mongodb://db:27017")
 # database
 db = client.mydb
 # Created collection name: mycollection
-collection = db.inventory
+
 
 # emp_rec1 = {
 # 	        "name":"Mr.Geek",
@@ -31,9 +31,18 @@ collection = db.inventory
 
 class startup(Resource):
 	def get(self,id):
-		cursor = collection.find({"_id" : ObjectId("5d08031b5dbb7959c310c6b2"),})
-		for record in cursor:
-			return jsonify(record)
+		cursor = db.inventory.find()
+		#cursor = collection.find({"_id":id})
+		return json.dump(cursor)
+
+
+class startupall(Resource):
+	def get(self):
+		output = []
+		for data in db.inventory.find():
+			output.append({"item" : data['item']})
+
+		return jsonify({'result':output})
 
 #for testing
 @app.route("/")
@@ -50,6 +59,7 @@ def good_bye():
 	return jsonify(json_dic)
 
 api.add_resource(startup, "/startup/<id>")
+api.add_resource(startupall, "/startup/all")
 # @app.route("/getstate")
 # def get_state():
 # 	for state in data['states']:
